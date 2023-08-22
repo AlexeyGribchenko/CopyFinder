@@ -24,10 +24,11 @@ if __name__ == '__main__':
 """
 TODO
 
-- maybe remove redundant class Directory
 - make program indestructible
 
 COMPLETED
+
+- maybe remove redundant class Directory
 - add opportunity to chose directory to save duplicates.txt
 - add work time output 
 

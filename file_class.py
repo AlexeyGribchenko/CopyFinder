@@ -1,13 +1,6 @@
 import os
 
 
-class Directory(object):
-
-    def __init__(self, name, path):
-        self.name = name
-        self.path = path
-
-
 class FileSystem(object):
 
     def __init__(self):
@@ -26,10 +19,10 @@ class FileSystem(object):
             cur_object_name = current_objects.pop(0)
             cur_object_path = os.path.join(root_path, cur_object_name)
 
-            dir_array = []
+            dir_dict = dict()
 
             if os.path.isdir(cur_object_path):
-                dir_array.append(Directory(cur_object_name, cur_object_path))
+                dir_dict[cur_object_name] = cur_object_path
             else:
                 cur_object_size = str(os.path.getsize(cur_object_path))
                 cur_object_key = cur_object_name + "_" + cur_object_size
@@ -39,8 +32,8 @@ class FileSystem(object):
                 else:
                     self.__file_dict[cur_object_key].append(cur_object_path)
 
-            for directory in dir_array:
-                self.find_duplicates(directory.path)
+            for directory in dir_dict.keys():
+                self.find_duplicates(dir_dict[directory])
 
         return self.__file_dict
 
